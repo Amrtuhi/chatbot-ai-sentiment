@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Sentiment Chatbot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #89f7fe, #66a6ff);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .container {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      width: 400px;
+      max-width: 95%;
+      padding: 20px 30px;
+      text-align: center;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    h1 {
+      color: #4a4a4a;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      animation: slideIn 1.5s ease-out;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    textarea {
+      width: 100%;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 1rem;
+      outline: none;
+      resize: none;
+      transition: border-color 0.3s;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    textarea:focus {
+      border-color: #66a6ff;
+    }
+
+    button {
+      background: linear-gradient(90deg, #66a6ff, #89f7fe);
+      border: none;
+      padding: 12px 20px;
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(102, 166, 255, 0.5);
+    }
+
+    button:active {
+      transform: scale(1);
+      box-shadow: none;
+    }
+
+    .response {
+      background: #f4f9ff;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #333;
+      border: 1px solid #ddd;
+      opacity: 0;
+      animation: fadeIn 0.7s ease-out forwards;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Floating Bubbles */
+    .bubbles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -150px;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: bubbleUp 8s infinite ease-in-out;
+    }
+
+    .bubble:nth-child(2) {
+      width: 30px;
+      height: 30px;
+      animation-duration: 6s;
+      animation-delay: 1s;
+    }
+
+    .bubble:nth-child(3) {
+      width: 25px;
+      height: 25px;
+      animation-duration: 10s;
+      animation-delay: 2s;
+    }
+
+    .bubble:nth-child(4) {
+      width: 40px;
+      height: 40px;
+      animation-duration: 12s;
+      animation-delay: 4s;
+    }
+
+    @keyframes bubbleUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-800px) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bubbles">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+
+  <div class="container">
+    <h1>AI Sentiment Chatbot</h1>
+    <p>Share your feelings, and I'll respond with insight!</p>
+    <form action="/" method="POST">
+        <textarea name="user_input" rows="4" placeholder="Type your feelings here..."></textarea>
+        <br><br>
+        <button type="submit">Share Feelings</button>
+    </form>
+    
+    <div class="response">
+      <!-- The chatbot response will appear here -->
+      {{ response }}
+    </div>
+  </div>
+</body>
+</html>
